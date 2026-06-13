@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>first</title>
+  <link rel="stylesheet" href="firstpage.css">
+</head>
+
+<body>
+  <a class="home_button" href="index.html" aria-label="처음 화면으로 돌아가기">back</a>
+  <main id="ink_scene" aria-label="흐르는 산수화 인터랙션">
+    <div class="wash_layer"></div>
+
+    <div class="mountain_scroll back_scroll" aria-hidden="true">
+      <div class="mountain_track">
+        <img src="산1.png" alt="">
+        <img src="산2.png" alt="">
+        <img src="산3.png" alt="">
+        <img src="산4.png" alt="">
+        <img src="산5.png" alt="">
+        <img src="산6.png" alt="">
+        <img src="산1.png" alt="">
+        <img src="산2.png" alt="">
+        <img src="산3.png" alt="">
+        <img src="산4.png" alt="">
+        <img src="산5.png" alt="">
+        <img src="산6.png" alt="">
+      </div>
+    </div>
+
+    <div class="mountain_scroll front_scroll" aria-hidden="true">
+      <div class="mountain_track">
+        <img src="산4.png" alt="">
+        <img src="산5.png" alt="">
+        <img src="산6.png" alt="">
+        <img src="산1.png" alt="">
+        <img src="산2.png" alt="">
+        <img src="산3.png" alt="">
+        <img src="산4.png" alt="">
+        <img src="산5.png" alt="">
+        <img src="산6.png" alt="">
+        <img src="산1.png" alt="">
+        <img src="산2.png" alt="">
+        <img src="산3.png" alt="">
+      </div>
+    </div>
+
+    <div id="painted_elements" aria-hidden="true"></div>
+    <canvas id="brush_canvas" aria-hidden="true"></canvas>
+  </main>
+
+  <audio id="bgm" src="bgm.m4a?v=trim1" loop preload="auto"></audio>
+  <script src="bgm.js?v=5"></script>
+  <script src="firstpage.js"></script>
+</body>
+
+</html>

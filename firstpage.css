@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #f7efe2;
+}
+
+.home_button {
+  position: fixed;
+  top: 22px;
+  left: 24px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 34px;
+  padding: 0 14px;
+  color: rgba(66, 47, 33, 0.72);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  text-decoration: none;
+  background: rgba(255, 247, 231, 0.52);
+  border: 1px solid rgba(91, 64, 42, 0.2);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.home_button:hover {
+  opacity: 0.72;
+  transform: translateX(-2px);
+}
+
+#ink_scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: crosshair;
+  background:
+    radial-gradient(ellipse at 42% 24%, rgba(255, 252, 239, 0.92), transparent 42%),
+    linear-gradient(180deg, #fbf4e8 0%, #f3e7d5 62%, #ead9c2 100%);
+}
+
+#ink_scene::before {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(122, 97, 72, 0.12), transparent 16%, transparent 84%, rgba(122, 97, 72, 0.11)),
+    radial-gradient(ellipse at center, transparent 0%, transparent 58%, rgba(99, 78, 55, 0.12) 100%);
+  mix-blend-mode: multiply;
+}
+
+.wash_layer {
+  position: absolute;
+  inset: -8%;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 16% 34%, rgba(139, 159, 132, 0.14), transparent 32%),
+    radial-gradient(ellipse at 74% 58%, rgba(99, 128, 116, 0.12), transparent 34%),
+    radial-gradient(ellipse at 48% 82%, rgba(120, 92, 69, 0.1), transparent 38%);
+  filter: blur(18px);
+  animation: washDrift 18s ease-in-out infinite alternate;
+}
+
+.mountain_scroll {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.back_scroll {
+  top: 4vh;
+  z-index: 2;
+  opacity: 0.42;
+  filter: blur(1.4px) saturate(0.72);
+}
+
+.front_scroll {
+  bottom: -5vh;
+  z-index: 3;
+  opacity: 0.82;
+  filter: saturate(0.86) contrast(0.95);
+}
+
+.mountain_track {
+  display: flex;
+  width: max-content;
+  align-items: flex-end;
+  animation: mountainFlow 42s linear infinite;
+}
+
+.back_scroll .mountain_track {
+  animation-duration: 64s;
+}
+
+.mountain_track img {
+  display: block;
+  width: clamp(260px, 34vw, 520px);
+  height: auto;
+  margin-right: -7vw;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.back_scroll img {
+  width: clamp(220px, 29vw, 460px);
+}
+
+#painted_elements {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+#brush_canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.paint_element {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--width);
+  height: auto;
+  opacity: 0;
+  object-fit: contain;
+  filter: blur(0.1px) saturate(0.88) contrast(0.96);
+  transform: translate(-50%, -50%) scale(0.72);
+  transform-origin: 50% 72%;
+  animation: inkAppear 1.2s ease forwards, inkFloat 6s ease-in-out 1.2s infinite alternate;
+  mix-blend-mode: multiply;
+}
+
+@keyframes mountainFlow {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes washDrift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+  }
+}
+
+@keyframes inkAppear {
+  to {
+    opacity: var(--opacity);
+    transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotate));
+  }
+}
+
+@keyframes inkFloat {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: -12px;
+  }
+}

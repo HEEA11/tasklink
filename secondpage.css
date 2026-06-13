@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -6%, rgba(221, 244, 220, 0.2), transparent 34rem),
+    radial-gradient(ellipse at 50% 48%, rgba(78, 194, 151, 0.11), transparent 31rem),
+    linear-gradient(180deg, #090b0d 0%, #040606 64%, #010202 100%);
+  color: rgba(227, 239, 230, 0.78);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.home_button {
+  position: fixed;
+  top: 22px;
+  left: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 34px;
+  padding: 0 14px;
+  color: rgba(227, 239, 230, 0.68);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  text-decoration: none;
+  background: rgba(7, 12, 10, 0.42);
+  border: 1px solid rgba(199, 231, 202, 0.16);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.home_button:hover {
+  opacity: 0.74;
+  transform: translateX(-2px);
+}
+
+#click-area {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  isolation: isolate;
+}
+
+.star_sky,
+.star_sky::before,
+.star_sky::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star_sky {
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star_sky::before,
+.star_sky::after {
+  content: "";
+  background-repeat: repeat;
+  opacity: 0.88;
+  animation: starTwinkle 4.8s ease-in-out infinite alternate;
+}
+
+.star_sky::before {
+  background-image:
+    radial-gradient(circle, rgba(246, 255, 226, 0.9) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(171, 224, 185, 0.72) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255, 255, 245, 0.58) 0 0.8px, transparent 1.7px);
+  background-size: 138px 142px, 221px 196px, 307px 263px;
+  background-position: 18px 34px, 88px 22px, 44px 102px;
+  filter: drop-shadow(0 0 3px rgba(202, 255, 213, 0.6));
+}
+
+.star_sky::after {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 235, 0.82) 0 1.2px, transparent 2.5px),
+    radial-gradient(circle, rgba(128, 210, 176, 0.52) 0 1px, transparent 2.2px);
+  background-size: 271px 219px, 183px 251px;
+  background-position: 140px 76px, 12px 168px;
+  filter: blur(0.2px) drop-shadow(0 0 5px rgba(214, 255, 219, 0.44));
+  opacity: 0.55;
+  animation-duration: 3.6s;
+  animation-delay: -1.4s;
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.34;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: translate3d(8px, -6px, 0) scale(1.012);
+  }
+}
+
+#click-area::before {
+  position: absolute;
+  top: -20vh;
+  left: 50%;
+  z-index: 1;
+  width: min(82vw, 960px);
+  height: 88vh;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(247, 252, 226, 0.28), transparent 30%),
+    radial-gradient(ellipse at 50% 36%, rgba(209, 242, 214, 0.16), transparent 54%),
+    linear-gradient(180deg, rgba(231, 245, 215, 0.12), transparent 78%);
+  filter: blur(30px);
+  opacity: 0.82;
+  transform: translateX(-50%);
+}
+
+#click-area::after {
+  position: absolute;
+  left: 50%;
+  bottom: 6vh;
+  z-index: 1;
+  width: min(45vw, 520px);
+  height: 74px;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(129, 225, 176, 0.25), transparent 68%);
+  filter: blur(18px);
+  transform: translateX(-50%);
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  #click-area::before {
+    width: 92vw;
+  }
+}
